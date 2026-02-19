@@ -42,3 +42,16 @@ index=0;
 showSlide(index);
 
 },5000);
+(() => {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+
+  function onScroll() {
+    header.style.boxShadow = window.scrollY > 10
+      ? '0 10px 24px rgba(10,43,73,0.14)'
+      : 'none';
+  }
+
+  onScroll();
+  window.addEventListener('scroll', onScroll);
+})();

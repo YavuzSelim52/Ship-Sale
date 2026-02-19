@@ -1,83 +1,102 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShipSale | İletişim</title>
+  <meta name="description" content="ShipSale iletişim sayfası." />
 
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<link rel="stylesheet" href="css/style.css">
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<title>İletişim</title>
-
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="CSS/style.css" />
 </head>
-
 <body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">ShipSale</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Menüyü aç/kapat">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="listings.html">İlanlar</a></li>
+          <li class="nav-item"><a class="nav-link" href="ship.html">Gemi Detay</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">Hakkımızda</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contact.html">İletişim</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
+  <main class="container pb-5">
+    <section class="page-head">
+      <h1>Bizimle İletişime Geçin</h1>
+      <p>Yatırım hedefinizi paylaşın, size uygun gemi seçeneklerini birlikte planlayalım.</p>
+    </section>
 
-<header class="header">
-<div class="container nav-container">
+    <section>
+      <div class="row g-4">
+        <div class="col-12 col-lg-7">
+          <form class="contact-box">
+            <div class="mb-3">
+              <label class="form-label" for="fullName">İsim Soyisim</label>
+              <input id="fullName" type="text" class="form-control form-control-lg" placeholder="Adınız Soyadınız" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="email">E-posta</label>
+              <input id="email" type="email" class="form-control form-control-lg" placeholder="ornek@mail.com" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="phone">Telefon</label>
+              <input id="phone" type="tel" class="form-control form-control-lg" placeholder="+90 ..." />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="message">Mesajınız</label>
+              <textarea id="message" class="form-control form-control-lg" rows="5" placeholder="Talebinizi yazın"></textarea>
+            </div>
+            <button class="btn btn-primary-custom btn-lg w-100" type="submit">Gönder</button>
+          </form>
+        </div>
 
-<div class="logo">
-<a href="index.html">🚢 ShipSale</a>
-</div>
+        <div class="col-12 col-lg-5">
+          <article class="contact-info h-100">
+            <h3>İletişim Bilgileri</h3>
+            <p><strong>E-posta:</strong> info@shipsale.com</p>
+            <p><strong>Telefon:</strong> +90 555 555 55 55</p>
+            <p><strong>Adres:</strong> İstanbul Deniz Ticaret Merkezi</p>
+            <p><strong>Çalışma Saatleri:</strong> Hafta içi 09:00 - 18:00</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<nav>
-<a href="index.html">Ana Sayfa</a>
-<a href="listings.html">İlanlar</a>
-<a href="about.html">Hakkımızda</a>
-<a href="contact.html">İletişim</a>
-</nav>
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h5>ShipSale</h5>
+          <p>Premium gemi satış platformu ve profesyonel denizcilik danışmanlığı.</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Menü</h5>
+          <a href="index.html">Ana Sayfa</a><br />
+          <a href="listings.html">İlanlar</a><br />
+          <a href="about.html">Hakkımızda</a><br />
+          <a href="contact.html">İletişim</a>
+        </div>
+        <div class="col-md-4">
+          <h5>İletişim</h5>
+          info@shipsale.com<br />
+          +90 555 555 55 55<br />
+          İstanbul, Türkiye
+        </div>
+      </div>
+      <hr />
+      <div class="text-center">© 2026 ShipSale. Tüm hakları saklıdır.</div>
+    </div>
+  </footer>
 
-</div>
-</header>
-
-
-<div class="container contact-container">
-
-<h2>İletişim</h2>
-
-<form>
-
-<div class="mb-3">
-
-<label>İsim Soyisim</label>
-
-<input type="text" class="form-control form-control-lg">
-
-</div>
-
-
-<div class="mb-3">
-
-<label>E-mail</label>
-
-<input type="email" class="form-control form-control-lg">
-
-</div>
-
-
-<div class="mb-3">
-
-<label>Açıklama</label>
-
-<textarea class="form-control form-control-lg" rows="6"></textarea>
-
-</div>
-
-
-<button class="btn btn-warning btn-lg w-100">
-
-Gönder
-
-</button>
-
-</form>
-
-</div>
-
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
