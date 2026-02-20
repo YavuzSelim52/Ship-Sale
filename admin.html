@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+</head>
+<body>
+
+<h1>Admin Panel</h1>
+
+<h3>Yeni Gemi Ekle</h3>
+
+<input id="title" placeholder="Gemi adı"><br><br>
+<input id="price" placeholder="Fiyat"><br><br>
+<input id="year" placeholder="Yıl"><br><br>
+<input id="image" placeholder="Resim URL"><br><br>
+
+<button onclick="addShip()">Ekle</button>
+
+<hr>
+
+<h3>Mevcut Gemiler</h3>
+<div id="ships"></div>
+
+<script>
+
+async function loadShips(){
+    const res = await fetch("/api/ships");
+    const ships = await res.json();
+
+    let html = "";
+
+    ships.forEach(ship => {
+        html += `
+            <div>
+                ${ship.title} - ${ship.price}
+                <button onclick="deleteShip(${ship.id})">Sil</button>
+            </div>
+        `;
+    });
+
+    document.getElementById("ships").innerHTML = html;
+}
+
+async function addShip(){
+    await fetch("/api/ships", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            title: document.getElementById("title").value,
+            price: document.getElementById("price").value,
+            year: document.getElementById("year").value,
+            image: document.getElementById("image").value
+        })
+    });
+
+    loadShips();
+}
+
+async function deleteShip(id){
+    await fetch("/api/ships/" + id, {
+        method: "DELETE"
+    });
+
+    loadShips();
+}
+
+loadShips();
+
+</script>
+
+</body>
+</html>
