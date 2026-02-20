@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ShipSale | Gemi Detay</title>
-  <meta name="description" content="ShipSale gemi detay sayfası." />
+  <title>ShipSale | İlan Detay</title>
+  <meta name="description" content="ShipSale ilan detay sayfası." />
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="CSS/style.css" />
@@ -19,8 +19,7 @@
       <div class="collapse navbar-collapse" id="menu">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="index.html">Ana Sayfa</a></li>
-          <li class="nav-item"><a class="nav-link" href="listings.html">İlanlar</a></li>
-          <li class="nav-item"><a class="nav-link active" href="ship.html">Gemi Detay</a></li>
+          <li class="nav-item"><a class="nav-link active" href="listings.html">İlanlar</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">Hakkımızda</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">İletişim</a></li>
         </ul>
@@ -30,23 +29,23 @@
 
   <main class="container pb-5">
     <section class="page-head">
-      <h1>Kargo Gemisi</h1>
-      <p>İşletme verimliliği yüksek, bakımları düzenli tamamlanmış ticari gemi.</p>
+      <h1 id="ship-name"></h1>
+      <p id="ship-summary"></p>
     </section>
 
     <section>
       <div class="row g-4 align-items-start">
         <div class="col-12 col-lg-7">
-          <img src="images/ship3.JPG" class="img-fluid rounded-3 shadow-sm w-100" alt="Kargo Gemisi" />
+          <img id="ship-image" src="" class="img-fluid rounded-3 shadow-sm w-100" alt="" />
         </div>
         <div class="col-12 col-lg-5">
           <article class="detail-panel">
-            <p><strong>Fiyat:</strong> 2.5M$</p>
-            <p><strong>Yıl:</strong> 2019</p>
-            <p><strong>Uzunluk:</strong> 65 metre</p>
-            <p><strong>Bayrak:</strong> Panama</p>
-            <p><strong>Durum:</strong> Hazır Teslim</p>
-            <p>Bu gemi orta ölçekli taşımacılık operasyonları için optimize edilmiştir. Teknik rapor ve bakım geçmişi eksiksizdir.</p>
+            <p><strong>Fiyat:</strong> <span id="ship-price"></span></p>
+            <p><strong>Yıl:</strong> <span id="ship-year"></span></p>
+            <p><strong>Uzunluk:</strong> <span id="ship-length"></span></p>
+            <p><strong>Bayrak:</strong> <span id="ship-flag"></span></p>
+            <p><strong>Durum:</strong> <span id="ship-status"></span></p>
+            <p id="ship-description"></p>
             <a href="contact.html" class="btn btn-primary-custom mt-2">Bu Gemi İçin Teklif Al</a>
           </article>
         </div>
@@ -80,6 +79,59 @@
     </div>
   </footer>
 
+  <script>
+    const ships = {
+      "yuk-gemisi": {
+        name: "Yük Gemisi",
+        summary: "Yüksek taşıma kapasitesi ve düşük operasyon maliyeti sunan modern yük gemisi.",
+        image: "images/ship1.JPG",
+        price: "2M$",
+        year: "2018",
+        length: "50 metre",
+        flag: "Malta",
+        status: "Hazır Teslim",
+        description: "Kısa ve orta mesafe ticari operasyonlarda verimlilik için optimize edilmiştir. Son bakım kayıtları ve teknik raporları tamdır."
+      },
+      "tanker": {
+        name: "Tanker",
+        summary: "Uzun menzilli sıvı yük taşımacılığına uygun, güçlü performanslı tanker.",
+        image: "images/ship2.JPG",
+        price: "3M$",
+        year: "2020",
+        length: "70 metre",
+        flag: "Liberia",
+        status: "Operasyona Hazır",
+        description: "Uluslararası standartlara uygun donanıma sahiptir. Düzenli denetimlerden geçmiş olup hemen devreye alınabilir."
+      },
+      "kargo-gemisi": {
+        name: "Kargo Gemisi",
+        summary: "İşletme verimliliği yüksek, bakımları düzenli tamamlanmış ticari gemi.",
+        image: "images/ship3.JPG",
+        price: "2.5M$",
+        year: "2019",
+        length: "65 metre",
+        flag: "Panama",
+        status: "Hazır Teslim",
+        description: "Bu gemi orta ölçekli taşımacılık operasyonları için optimize edilmiştir. Teknik rapor ve bakım geçmişi eksiksizdir."
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const shipId = params.get("id");
+    const selectedShip = ships[shipId] || ships["kargo-gemisi"];
+
+    document.title = `ShipSale | ${selectedShip.name} Detay`;
+    document.getElementById("ship-name").textContent = selectedShip.name;
+    document.getElementById("ship-summary").textContent = selectedShip.summary;
+    document.getElementById("ship-image").src = selectedShip.image;
+    document.getElementById("ship-image").alt = selectedShip.name;
+    document.getElementById("ship-price").textContent = selectedShip.price;
+    document.getElementById("ship-year").textContent = selectedShip.year;
+    document.getElementById("ship-length").textContent = selectedShip.length;
+    document.getElementById("ship-flag").textContent = selectedShip.flag;
+    document.getElementById("ship-status").textContent = selectedShip.status;
+    document.getElementById("ship-description").textContent = selectedShip.description;
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
