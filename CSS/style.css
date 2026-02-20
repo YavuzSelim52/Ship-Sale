@@ -272,6 +272,105 @@ a {
   border-color: rgba(255, 255, 255, 0.22);
 }
 
+/* Admin */
+.admin-section-title {
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.admin-plus-btn {
+  border: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #1f2937;
+  font-size: 1.5rem;
+  line-height: 1;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+.admin-plus-btn:hover {
+  background: var(--accent-hover);
+}
+
+.admin-listing-card {
+  position: relative;
+}
+
+.admin-card-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+}
+
+.admin-action-btn {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+.admin-delete-btn {
+  background: #dc3545;
+}
+
+.admin-restore-btn {
+  background: #198754;
+}
+
+.admin-yes-btn {
+  background: #dc3545;
+  color: #fff;
+}
+
+.admin-yes-btn:hover {
+  background: #bb2d3b;
+  color: #fff;
+}
+
+.admin-no-btn {
+  background: #0d6efd;
+  color: #fff;
+}
+
+.admin-no-btn:hover {
+  background: #0b5ed7;
+  color: #fff;
+}
+
+.admin-mode {
+  padding-top: 52px;
+}
+
+.admin-mode-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2000;
+  background: #102a43;
+  color: #fff;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16);
+}
+
+.admin-mode-actions {
+  display: flex;
+  gap: 8px;
+}
+
 /* Responsive - Large tablet */
 @media (max-width: 991.98px) {
   .navbar .nav-link {

@@ -1,0 +1,381 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShipSale | Admin Panel</title>
+  <meta name="description" content="ShipSale admin paneli" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/CSS/style.css" />
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">ShipSale</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Menuyu ac/kapat">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/admin/home">Ana Sayfa</a></li>
+          <li class="nav-item"><a class="nav-link" href="/admin/listings">Ilanlar</a></li>
+          <li class="nav-item"><a class="nav-link" href="/admin/about">Hakkimizda</a></li>
+          <li class="nav-item"><a class="nav-link" href="/admin/contact">Iletisim</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/admin/panel">Admin</a></li>
+          <li class="nav-item"><button id="logoutBtn" class="btn btn-sm btn-outline-danger ms-lg-2 mt-2 mt-lg-0">Cikis</button></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container pb-5">
+    <section class="page-head d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <div>
+        <h1>Admin Paneli</h1>
+        <p>Ilanlari ekleyin, cikarin, cop kutusundan geri alin veya kalici silin.</p>
+      </div>
+      <div class="d-flex gap-2">
+        <a href="/admin/panel" class="btn btn-outline-dark btn-sm">Aktif Ilanlar</a>
+        <a href="/admin/panel#cop-kutusu" class="btn btn-outline-dark btn-sm">Cop Kutusu URL</a>
+      </div>
+    </section>
+
+    <section id="aktif-ilanlar" class="pb-5">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="admin-section-title mb-0">Ilanlar</h2>
+        <button class="admin-plus-btn" type="button" data-bs-toggle="modal" data-bs-target="#createModal" title="Yeni ilan ekle">+</button>
+      </div>
+      <div id="activeGrid" class="row g-4"></div>
+    </section>
+
+    <section id="cop-kutusu" class="pb-5">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="admin-section-title mb-0">Cop Kutusu</h2>
+      </div>
+      <div id="trashGrid" class="row g-4"></div>
+    </section>
+  </main>
+
+  <div class="modal fade" id="createModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Yeni Kart Olustur</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body">
+          <form id="createForm" class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Ilan Basligi</label>
+              <input class="form-control" name="title" required />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Fiyat</label>
+              <input class="form-control" name="price" placeholder="2.5M$" required />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Yil</label>
+              <input class="form-control" name="year" placeholder="2021" required />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Resim URL</label>
+              <input class="form-control" name="image" placeholder="images/ship1.JPG" required />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Uzunluk</label>
+              <input class="form-control" name="length" placeholder="65 metre" required />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Gemi Tipi (Combobox)</label>
+              <select class="form-select" name="type" required>
+                <option value="">Seciniz</option>
+                <option>Kuru Yuk Gemisi</option>
+                <option>Konteyner Gemisi</option>
+                <option>Petrol Tankeri</option>
+                <option>Ro-Ro</option>
+                <option>Yolcu Gemisi</option>
+                <option>Roro Kargo</option>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">Bayrak (Combobox)</label>
+              <select class="form-select" name="flag" required>
+                <option value="">Seciniz</option>
+                <option>Turkiye</option>
+                <option>Malta</option>
+                <option>Panama</option>
+                <option>Liberia</option>
+                <option>Marshall Adalari</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Konum (Combobox)</label>
+              <select class="form-select" name="location" required>
+                <option value="">Seciniz</option>
+                <option>Istanbul</option>
+                <option>Izmir</option>
+                <option>Mersin</option>
+                <option>Antalya</option>
+                <option>Trabzon</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Motor (Combobox)</label>
+              <select class="form-select" name="engine" required>
+                <option value="">Seciniz</option>
+                <option>Cift Dizel</option>
+                <option>Dizel Elektrik</option>
+                <option>Turbo Dizel</option>
+                <option>Gaz Turbini</option>
+              </select>
+            </div>
+
+            <div class="col-md-12">
+              <label class="form-label">Durum (Combobox)</label>
+              <select class="form-select" name="condition" required>
+                <option value="">Seciniz</option>
+                <option>Hazir Teslim</option>
+                <option>Operasyona Hazir</option>
+                <option>Bakimda</option>
+                <option>Revizyon Gerekli</option>
+              </select>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Aciklama</label>
+              <textarea class="form-control" name="description" rows="4" required></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Kapat</button>
+          <button type="button" id="createSubmit" class="btn btn-primary-custom">Kart Olustur</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Onay Ekrani</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+        </div>
+        <div class="modal-body">
+          <p id="confirmText" class="mb-0"></p>
+        </div>
+        <div class="modal-footer d-flex justify-content-end gap-2">
+          <button id="confirmNo" type="button" class="btn admin-no-btn" data-bs-dismiss="modal">Hayir</button>
+          <button id="confirmYes" type="button" class="btn admin-yes-btn">Evet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <h5>ShipSale</h5>
+          <p>Premium gemi satis platformu ve profesyonel denizcilik danismanligi.</p>
+        </div>
+        <div class="col-md-4">
+          <h5>Menu</h5>
+          <a href="index.html">Ana Sayfa</a><br />
+          <a href="listings.html">Ilanlar</a><br />
+          <a href="about.html">Hakkimizda</a><br />
+          <a href="contact.html">Iletisim</a>
+        </div>
+        <div class="col-md-4">
+          <h5>Iletisim</h5>
+          info@shipsale.com<br />
+          +90 555 555 55 55<br />
+          Istanbul, Turkiye
+        </div>
+      </div>
+      <hr />
+      <div class="text-center">(c) 2026 ShipSale. Tum haklari saklidir.</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const activeGrid = document.getElementById("activeGrid");
+    const trashGrid = document.getElementById("trashGrid");
+    const createForm = document.getElementById("createForm");
+    const createModal = new bootstrap.Modal(document.getElementById("createModal"));
+    const confirmModal = new bootstrap.Modal(document.getElementById("confirmModal"));
+    const confirmText = document.getElementById("confirmText");
+    const confirmYes = document.getElementById("confirmYes");
+
+    let confirmAction = null;
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    function normalizeImage(src) {
+      if (!src) return "/images/ship1.JPG";
+      if (src.startsWith("/") || src.startsWith("http://") || src.startsWith("https://")) {
+        return src;
+      }
+      return `/${src}`;
+    }
+
+    logoutBtn.addEventListener("click", async () => {
+      await fetch("/api/admin/logout", { method: "POST", credentials: "include" });
+      window.location.href = "/admin/login";
+    });
+
+    function openConfirm(message, action) {
+      confirmText.textContent = message;
+      confirmAction = action;
+      confirmModal.show();
+    }
+
+    confirmYes.addEventListener("click", async () => {
+      if (confirmAction) {
+        await confirmAction();
+      }
+      confirmModal.hide();
+      confirmAction = null;
+      await loadAll();
+    });
+
+    function cardTemplate(ship, isTrash) {
+      const safeTitle = JSON.stringify(ship.title || "");
+      const actionButtons = isTrash
+        ? `
+          <div class="admin-card-actions">
+            <button class="admin-action-btn admin-restore-btn" onclick='restoreShip(${ship.id}, ${safeTitle})' title="Geri al">&#8634;</button>
+            <button class="admin-action-btn admin-delete-btn" onclick='permanentDeleteShip(${ship.id}, ${safeTitle})' title="Kalici sil">&#128465;</button>
+          </div>
+        `
+        : `
+          <div class="admin-card-actions">
+            <button class="admin-action-btn admin-delete-btn" onclick='trashShip(${ship.id}, ${safeTitle})' title="Sil">&#128465;</button>
+          </div>
+        `;
+
+      return `
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="listing-card admin-listing-card">
+            ${actionButtons}
+            <img src="${normalizeImage(ship.image)}" alt="${ship.title || 'Ilan'}" />
+            <div class="p-3">
+              <h3>${ship.title || 'Basliksiz Ilan'}</h3>
+              <p>${ship.length || '-'} • ${ship.year || '-'} • ${ship.price || '-'}</p>
+              <p class="mb-2"><strong>Tip:</strong> ${ship.type || '-'}<br /><strong>Konum:</strong> ${ship.location || '-'}</p>
+            </div>
+          </article>
+        </div>
+      `;
+    }
+
+    async function loadActive() {
+      const res = await fetch("/api/ships", { credentials: "include" });
+      if (!res.ok) {
+        activeGrid.innerHTML = `<div class="col-12"><div class="info-panel"><p class="mb-0">Aktif ilanlar yuklenemedi.</p></div></div>`;
+        return;
+      }
+      const ships = await res.json();
+
+      if (!ships.length) {
+        activeGrid.innerHTML = `<div class="col-12"><div class="info-panel"><p class="mb-0">Aktif ilan bulunmuyor.</p></div></div>`;
+        return;
+      }
+
+      activeGrid.innerHTML = ships.map((ship) => cardTemplate(ship, false)).join("");
+    }
+
+    async function loadTrash() {
+      const res = await fetch("/api/ships/trash", { credentials: "include" });
+      if (res.status === 302 || res.status === 401 || res.status === 403) {
+        window.location.href = "/admin/login";
+        return;
+      }
+      if (!res.ok) {
+        trashGrid.innerHTML = `<div class="col-12"><div class="info-panel"><p class="mb-0">Cop kutusu yuklenemedi.</p></div></div>`;
+        return;
+      }
+      const ships = await res.json();
+
+      if (!ships.length) {
+        trashGrid.innerHTML = `<div class="col-12"><div class="info-panel"><p class="mb-0">Cop kutusu bos.</p></div></div>`;
+        return;
+      }
+
+      trashGrid.innerHTML = ships.map((ship) => cardTemplate(ship, true)).join("");
+    }
+
+    async function loadAll() {
+      await Promise.all([loadActive(), loadTrash()]);
+    }
+
+    window.trashShip = function(id, title) {
+      openConfirm(`"${title}" isimli ilan kaldiriliyor Onayliyor Musunuz?`, async () => {
+        await fetch(`/api/ships/${id}/trash`, { method: "PATCH", credentials: "include" });
+      });
+    };
+
+    window.permanentDeleteShip = function(id, title) {
+      openConfirm(`"${title}" isimli ilan kalici olarak kaldirilmasini Onayliyor Musunuz?`, async () => {
+        await fetch(`/api/ships/${id}/permanent`, { method: "DELETE", credentials: "include" });
+      });
+    };
+
+    window.restoreShip = function(id, title) {
+      openConfirm(`"${title}" isimli ilan tekrar aktiflessin mi?`, async () => {
+        await fetch(`/api/ships/${id}/restore`, { method: "PATCH", credentials: "include" });
+      });
+    };
+
+    document.getElementById("createSubmit").addEventListener("click", async () => {
+      if (!createForm.reportValidity()) {
+        return;
+      }
+
+      const formData = new FormData(createForm);
+      const payload = Object.fromEntries(formData.entries());
+
+      let res;
+      try {
+        res = await fetch("/api/ships", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        alert("Sunucuya baglanilamadi.");
+        return;
+      }
+      if (!res.ok) {
+        const text = await res.text();
+        let data = {};
+        try { data = JSON.parse(text); } catch (_) {}
+        alert(data.error || text || "Kart olusturma sirasinda bir hata olustu.");
+        return;
+      }
+
+      createForm.reset();
+      createModal.hide();
+      await loadAll();
+      window.location.hash = "#aktif-ilanlar";
+    });
+
+    function focusSectionFromHash() {
+      if (window.location.hash === "#cop-kutusu") {
+        document.getElementById("cop-kutusu").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    window.addEventListener("hashchange", focusSectionFromHash);
+
+    loadAll().then(focusSectionFromHash);
+  </script>
+</body>
+</html>
+
+
