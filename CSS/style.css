@@ -414,12 +414,17 @@ a {
   }
 
   .hero .btn {
-    width: 100%;
-    margin-right: 0 !important;
+    width: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.52rem 0.78rem;
+    margin-left: 4px;
+    margin-right: 4px !important;
   }
 
   .hero .btn + .btn {
-    margin-top: 0.6rem;
+    margin-top: 0;
   }
 
   .page-head h1 {
@@ -465,6 +470,11 @@ a {
 
   .hero p {
     font-size: 0.94rem;
+  }
+
+  .hero .btn {
+    font-size: 0.92rem;
+    padding: 0.48rem 0.68rem;
   }
 
   .stat-card {
